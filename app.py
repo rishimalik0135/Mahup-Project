@@ -9,6 +9,25 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import glob
+
+# Get a list of all files in the folder
+folder = os.getcwd()
+files = glob.glob(folder + "/*")
+
+# Count the number of MP3 and MP4 files in the list
+mp3_files = [f for f in files if f.endswith(".mp3")]
+mp4_files = [f for f in files if f.endswith(".mp4")]
+
+if(len(mp3_files)>0):
+    folder=os.getcwd()
+    for file in glob.glob(os.path.join(folder, '*.mp3')):
+        os.remove(file)
+    
+if(len(mp4_files)>0):
+    folder=os.getcwd()
+    for file in glob.glob(os.path.join(folder, '*.mp4')):
+        os.remove(file)
 
 def send_email_with_attachment(email, password, to, subject, body, file_path):
     msg = MIMEMultipart()
@@ -69,7 +88,8 @@ def createmash(Singer,num,dur):
 
 
 st.set_page_config(page_title="MashIT By Rishi Malik")
-st.subheader("Mashup Maker")
+st.subheader("Mashup Maker🌈")
+st.write("Made By Rishi Malik")
 
 st.write("Enter details: ")
 
